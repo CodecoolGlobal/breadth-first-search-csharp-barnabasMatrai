@@ -11,10 +11,11 @@ namespace BFS_c_sharp
             RandomDataGenerator generator = new RandomDataGenerator();
             List<UserNode> users = generator.Generate();
 
-            foreach (var user in users)
-            {
-                Console.WriteLine(user);
-            }
+            UserNode startNode = users[0];
+            UserNode endNode = users[5];
+
+            GraphOperation graphOperation = new GraphOperation();
+            Console.WriteLine(graphOperation.MinimumDistance(startNode, endNode));
 
             Console.WriteLine("Done");
             Console.ReadKey();
