@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BFS_c_sharp
 {
-    class GraphOperation
+    public class GraphOperation
     {
     }
 }
