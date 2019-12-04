@@ -11,6 +11,18 @@ namespace BFS_c_sharp
     {
         public int MinimumDistance(UserNode startNode, UserNode endNode)
         {
+            Dictionary<UserNode, int> nodeDistances = GetNodeDistancesFromStartNode(startNode);
+
+            if (nodeDistances.ContainsKey(endNode))
+            {
+                return nodeDistances[endNode];
+            }
+
+            return nodeDistances[startNode];
+        }
+
+        private Dictionary<UserNode, int> GetNodeDistancesFromStartNode(UserNode startNode)
+        {
             Queue<UserNode> queue = new Queue<UserNode>();
             Dictionary<UserNode, int> nodeDistances = new Dictionary<UserNode, int>();
 
@@ -34,9 +46,7 @@ namespace BFS_c_sharp
                 }
             }
 
-            return nodeDistances[endNode];
-
-
+            return nodeDistances;
         }
     }
 }

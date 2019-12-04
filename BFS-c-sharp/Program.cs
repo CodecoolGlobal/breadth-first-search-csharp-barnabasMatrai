@@ -12,7 +12,7 @@ namespace BFS_c_sharp
             List<UserNode> users = generator.Generate();
 
             UserNode startNode = users[0];
-            UserNode endNode = users[5];
+            UserNode endNode = users[1];
 
             GraphOperation graphOperation = new GraphOperation();
             Console.WriteLine(graphOperation.MinimumDistance(startNode, endNode));
