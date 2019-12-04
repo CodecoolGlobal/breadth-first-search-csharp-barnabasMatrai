@@ -17,6 +17,13 @@ namespace BFS_c_sharp
             GraphOperation graphOperation = new GraphOperation();
             Console.WriteLine(graphOperation.MinimumDistance(startNode, endNode));
 
+            var distance = 1;
+
+            foreach (UserNode user in graphOperation.FriendsOfFriendsAtDistance(startNode, distance))
+            {
+                Console.WriteLine($"{user.FirstName} {user.LastName}");
+            }
+
             Console.WriteLine("Done");
             Console.ReadKey();
         }
