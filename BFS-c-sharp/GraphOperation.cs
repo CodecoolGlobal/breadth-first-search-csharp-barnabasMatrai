@@ -9,6 +9,18 @@ namespace BFS_c_sharp
 {
     public class GraphOperation
     {
+        public void ShowFriendsAndDistancesFromUser(UserNode startUser)
+        {
+            foreach (KeyValuePair<HashSet<UserNode>, int> friendDistance in GetUserDistancesFromStartUser(startUser))
+            {
+                foreach (UserNode user in friendDistance.Key)
+                {
+                    Console.WriteLine($"{user.FirstName} {user.LastName}");
+                }
+                Console.WriteLine(friendDistance.Value);
+            }
+        }
+
         public int? MinimumDistanceOfUsers(UserNode startUser, UserNode endUser)
         {
             Dictionary<HashSet<UserNode>, int> userDistances = GetUserDistancesFromStartUser(startUser);
