@@ -11,7 +11,7 @@ namespace BFS_c_sharp
     {
         public void ShowFriendsAndDistancesFromUser(UserNode startUser)
         {
-            foreach (KeyValuePair<HashSet<UserNode>, int> friendDistance in GetUserDistancesFromStartUser(startUser))
+            foreach (KeyValuePair<HashSet<UserNode>, int> friendDistance in GetUserDistancesFromUser(startUser))
             {
                 foreach (UserNode user in friendDistance.Key)
                 {
@@ -23,7 +23,7 @@ namespace BFS_c_sharp
 
         public int? MinimumDistanceOfUsers(UserNode startUser, UserNode endUser)
         {
-            Dictionary<HashSet<UserNode>, int> userDistances = GetUserDistancesFromStartUser(startUser);
+            Dictionary<HashSet<UserNode>, int> userDistances = GetUserDistancesFromUser(startUser);
 
             int? distance = null;
 
@@ -40,7 +40,7 @@ namespace BFS_c_sharp
 
         public HashSet<UserNode> FriendsOfFriendsAtDistance(UserNode startUser, int distance)
         {
-            Dictionary<HashSet<UserNode>, int> userDistances = GetUserDistancesFromStartUser(startUser);
+            Dictionary<HashSet<UserNode>, int> userDistances = GetUserDistancesFromUser(startUser);
 
             HashSet<UserNode> usersAtDistance = null;
 
@@ -55,7 +55,7 @@ namespace BFS_c_sharp
             return usersAtDistance;
         }
 
-        public Dictionary<HashSet<UserNode>, int> GetUserDistancesFromStartUser(UserNode startUser)
+        public Dictionary<HashSet<UserNode>, int> GetUserDistancesFromUser(UserNode startUser)
         {
             Queue<UserNode> queue = new Queue<UserNode>();
             HashSet<UserNode> visited = new HashSet<UserNode>();
