@@ -9,76 +9,76 @@ namespace BFS_c_sharp
 {
     public class GraphOperation
     {
-        public int? MinimumDistance(UserNode startNode, UserNode endNode)
+        public int? MinimumDistanceOfUsers(UserNode startUser, UserNode endUser)
         {
-            Dictionary<HashSet<UserNode>, int> nodeDistances = GetNodeDistancesFromStartNode(startNode);
+            Dictionary<HashSet<UserNode>, int> userDistances = GetUserDistancesFromStartUser(startUser);
 
             int? distance = null;
 
-            foreach (KeyValuePair<HashSet<UserNode>, int> nodeDistance in nodeDistances)
+            foreach (KeyValuePair<HashSet<UserNode>, int> userDistance in userDistances)
             {
-                if (nodeDistance.Key.Contains(endNode))
+                if (userDistance.Key.Contains(endUser))
                 {
-                    distance = nodeDistance.Value;
+                    distance = userDistance.Value;
                 }
             }
 
             return distance;
         }
 
-        public HashSet<UserNode> FriendsOfFriendsAtDistance(UserNode startNode, int distance)
+        public HashSet<UserNode> FriendsOfFriendsAtDistance(UserNode startUser, int distance)
         {
-            Dictionary<HashSet<UserNode>, int> nodeDistances = GetNodeDistancesFromStartNode(startNode);
+            Dictionary<HashSet<UserNode>, int> userDistances = GetUserDistancesFromStartUser(startUser);
 
-            HashSet<UserNode> friendsAtDistance = null;
+            HashSet<UserNode> usersAtDistance = null;
 
-            foreach (KeyValuePair<HashSet<UserNode>, int> nodeDistance in nodeDistances)
+            foreach (KeyValuePair<HashSet<UserNode>, int> userDistance in userDistances)
             {
-                if (nodeDistance.Value == distance)
+                if (userDistance.Value == distance)
                 {
-                    friendsAtDistance = nodeDistance.Key;
+                    usersAtDistance = userDistance.Key;
                 }
             }
 
-            return friendsAtDistance;
+            return usersAtDistance;
         }
 
-        public Dictionary<HashSet<UserNode>, int> GetNodeDistancesFromStartNode(UserNode startUser)
+        public Dictionary<HashSet<UserNode>, int> GetUserDistancesFromStartUser(UserNode startUser)
         {
             Queue<UserNode> queue = new Queue<UserNode>();
             HashSet<UserNode> visited = new HashSet<UserNode>();
             HashSet<UserNode> dictionaryKey = new HashSet<UserNode>();
-            Dictionary<HashSet<UserNode>, int> friendDistances = new Dictionary<HashSet<UserNode>, int>();
+            Dictionary<HashSet<UserNode>, int> userDistances = new Dictionary<HashSet<UserNode>, int>();
 
-            HashSet<UserNode> previousFriendLayer = new HashSet<UserNode>();
-            HashSet<UserNode> currentFriendLayer = new HashSet<UserNode>();
+            HashSet<UserNode> previousUserLayer = new HashSet<UserNode>();
+            HashSet<UserNode> currentUserLayer = new HashSet<UserNode>();
 
             int distance = -1;
 
             queue.Enqueue(startUser);
             visited.Add(startUser);
-            currentFriendLayer.Add(startUser);
+            currentUserLayer.Add(startUser);
 
             while (queue.Count > 0)
             {
                 UserNode currentUser = queue.Dequeue();
 
-                if (!previousFriendLayer.Any(user => currentUser.Friends.Contains(user)))
+                if (!previousUserLayer.Any(user => currentUser.Friends.Contains(user)))
                 {
-                    if (previousFriendLayer.Count > 0)
+                    if (previousUserLayer.Count > 0)
                     {
-                        dictionaryKey = new HashSet<UserNode>(previousFriendLayer);
-                        friendDistances[dictionaryKey] = distance;
+                        dictionaryKey = new HashSet<UserNode>(previousUserLayer);
+                        userDistances[dictionaryKey] = distance;
                     }
-                    previousFriendLayer = new HashSet<UserNode>(currentFriendLayer);
-                    currentFriendLayer.Clear();
+                    previousUserLayer = new HashSet<UserNode>(currentUserLayer);
+                    currentUserLayer.Clear();
 
                     distance++;
                 }
 
                 if (!currentUser.Equals(startUser))
                 {
-                    currentFriendLayer.Add(currentUser);
+                    currentUserLayer.Add(currentUser);
                 }
 
                 foreach (UserNode friend in currentUser.Friends)
@@ -92,15 +92,15 @@ namespace BFS_c_sharp
                 }
             }
 
-            dictionaryKey = new HashSet<UserNode>(previousFriendLayer);
-            friendDistances[dictionaryKey] = distance;
+            dictionaryKey = new HashSet<UserNode>(previousUserLayer);
+            userDistances[dictionaryKey] = distance;
 
             distance++;
 
-            dictionaryKey = new HashSet<UserNode>(currentFriendLayer);
-            friendDistances[dictionaryKey] = distance;
+            dictionaryKey = new HashSet<UserNode>(currentUserLayer);
+            userDistances[dictionaryKey] = distance;
 
-            return friendDistances;
+            return userDistances;
         }
     }
 }

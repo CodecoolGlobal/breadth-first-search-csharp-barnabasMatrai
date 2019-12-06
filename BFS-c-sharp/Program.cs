@@ -11,12 +11,12 @@ namespace BFS_c_sharp
             RandomDataGenerator generator = new RandomDataGenerator();
             List<UserNode> users = generator.Generate();
 
-            UserNode startNode = users[0];
-            UserNode endNode = users[1];
+            UserNode startUser = users[0];
+            UserNode endUser = users[1];
 
             GraphOperation graphOperation = new GraphOperation();
 
-            foreach (KeyValuePair<HashSet<UserNode>, int> friendDistance in graphOperation.GetNodeDistancesFromStartNode(startNode))
+            foreach (KeyValuePair<HashSet<UserNode>, int> friendDistance in graphOperation.GetUserDistancesFromStartUser(startUser))
             {
                 foreach (UserNode user in friendDistance.Key)
                 {
@@ -25,7 +25,7 @@ namespace BFS_c_sharp
                 Console.WriteLine(friendDistance.Value);
             }
 
-            Console.WriteLine(graphOperation.MinimumDistance(users[0], users[1]));
+            Console.WriteLine(graphOperation.MinimumDistanceOfUsers(users[0], users[1]));
 
             foreach (UserNode userNode in graphOperation.FriendsOfFriendsAtDistance(users[0], 1))
             {
