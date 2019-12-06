@@ -28,19 +28,19 @@ namespace BFS_c_sharp
 
         public HashSet<UserNode> FriendsOfFriendsAtDistance(UserNode startNode, int distance)
         {
-            //Dictionary<UserNode, int> nodeDistances = GetNodeDistancesFromStartNode(startNode);
-            //HashSet<UserNode> usersAtDistance = new HashSet<UserNode>();
+            Dictionary<HashSet<UserNode>, int> nodeDistances = GetNodeDistancesFromStartNode(startNode);
 
-            //foreach (KeyValuePair<UserNode, int> user in nodeDistances)
-            //{
-            //    if (user.Value == distance)
-            //    {
-            //        usersAtDistance.Add(user.Key);
-            //    }
-            //}
+            HashSet<UserNode> friendsAtDistance = null;
 
-            //return usersAtDistance;
-            return new HashSet<UserNode>();
+            foreach (KeyValuePair<HashSet<UserNode>, int> nodeDistance in nodeDistances)
+            {
+                if (nodeDistance.Value == distance)
+                {
+                    friendsAtDistance = nodeDistance.Key;
+                }
+            }
+
+            return friendsAtDistance;
         }
 
         public Dictionary<HashSet<UserNode>, int> GetNodeDistancesFromStartNode(UserNode startUser)

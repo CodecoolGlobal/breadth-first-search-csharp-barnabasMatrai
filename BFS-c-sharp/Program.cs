@@ -24,7 +24,10 @@ namespace BFS_c_sharp
                 Console.WriteLine(friendDistance.Value);
             }
             Console.WriteLine(graphOperation.MinimumDistance(users[0], users[1]));
-
+            foreach (UserNode userNode in graphOperation.FriendsOfFriendsAtDistance(users[0], 1))
+            {
+                Console.WriteLine($"{userNode.FirstName} {userNode.LastName}");
+            }
             //Console.WriteLine(graphOperation.MinimumDistance(startNode, endNode));
 
             //var distance = 1;
