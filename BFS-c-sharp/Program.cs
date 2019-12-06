@@ -28,14 +28,6 @@ namespace BFS_c_sharp
             {
                 Console.WriteLine($"{userNode.FirstName} {userNode.LastName}");
             }
-            //Console.WriteLine(graphOperation.MinimumDistance(startNode, endNode));
-
-            //var distance = 1;
-
-            //foreach (UserNode user in graphOperation.FriendsOfFriendsAtDistance(startNode, distance))
-            //{
-            //    Console.WriteLine($"{user.FirstName} {user.LastName}");
-            //}
 
             Console.WriteLine("Done");
             Console.ReadKey();
