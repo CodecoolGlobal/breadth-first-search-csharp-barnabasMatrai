@@ -9,17 +9,21 @@ namespace BFS_c_sharp
 {
     public class GraphOperation
     {
-        public int MinimumDistance(UserNode startNode, UserNode endNode)
+        public int? MinimumDistance(UserNode startNode, UserNode endNode)
         {
-            //Dictionary<UserNode, int> nodeDistances = GetNodeDistancesFromStartNode(startNode);
+            Dictionary<HashSet<UserNode>, int> nodeDistances = GetNodeDistancesFromStartNode(startNode);
 
-            //if (nodeDistances.ContainsKey(endNode))
-            //{
-            //    return nodeDistances[endNode];
-            //}
+            int? distance = null;
 
-            //return nodeDistances[startNode];
-            return 0;
+            foreach (KeyValuePair<HashSet<UserNode>, int> nodeDistance in nodeDistances)
+            {
+                if (nodeDistance.Key.Contains(endNode))
+                {
+                    distance = nodeDistance.Value;
+                }
+            }
+
+            return distance;
         }
 
         public HashSet<UserNode> FriendsOfFriendsAtDistance(UserNode startNode, int distance)

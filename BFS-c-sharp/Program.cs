@@ -23,6 +23,7 @@ namespace BFS_c_sharp
                 }
                 Console.WriteLine(friendDistance.Value);
             }
+            Console.WriteLine(graphOperation.MinimumDistance(users[0], users[1]));
 
             //Console.WriteLine(graphOperation.MinimumDistance(startNode, endNode));
 
