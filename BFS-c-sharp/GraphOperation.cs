@@ -55,7 +55,7 @@ namespace BFS_c_sharp
             return usersAtDistance;
         }
 
-        public Dictionary<HashSet<UserNode>, int> GetUserDistancesFromUser(UserNode startUser)
+        private Dictionary<HashSet<UserNode>, int> GetUserDistancesFromUser(UserNode startUser)
         {
             Queue<UserNode> queue = new Queue<UserNode>();
             HashSet<UserNode> visited = new HashSet<UserNode>();
