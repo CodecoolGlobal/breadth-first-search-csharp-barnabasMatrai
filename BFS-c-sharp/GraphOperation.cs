@@ -79,8 +79,7 @@ namespace BFS_c_sharp
                 {
                     if (previousUserLayer.Count > 0)
                     {
-                        dictionaryKey = new HashSet<UserNode>(previousUserLayer);
-                        userDistances[dictionaryKey] = distance;
+                        userDistances = AddKeyToDictionaryWithValue(userDistances, previousUserLayer, distance);
                     }
                     previousUserLayer = new HashSet<UserNode>(currentUserLayer);
                     currentUserLayer.Clear();
@@ -104,15 +103,21 @@ namespace BFS_c_sharp
                 }
             }
 
-            dictionaryKey = new HashSet<UserNode>(previousUserLayer);
-            userDistances[dictionaryKey] = distance;
+            userDistances = AddKeyToDictionaryWithValue(userDistances, previousUserLayer, distance);
 
             distance++;
 
-            dictionaryKey = new HashSet<UserNode>(currentUserLayer);
-            userDistances[dictionaryKey] = distance;
+            userDistances = AddKeyToDictionaryWithValue(userDistances, currentUserLayer, distance);
 
             return userDistances;
+        }
+
+        private Dictionary<HashSet<UserNode>, int> AddKeyToDictionaryWithValue(Dictionary<HashSet<UserNode>, int> dictionary, HashSet<UserNode> key, int distance)
+        {
+            HashSet<UserNode> dictionaryKey = new HashSet<UserNode>(key);
+            dictionary[dictionaryKey] = distance;
+
+            return dictionary;
         }
     }
 }
